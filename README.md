@@ -11,6 +11,34 @@
 ## Palindrome
 
 ## Trees and Graphs
+### Formulas
+![Alt text](src/main/resources/Complete_Tree.jpg?raw=true "Complete Tree")
+- Example complete tree
+  - n=7, h=3
+#### #_of_nodes in perfect binary tree(from height)
+  - 2^(height)-1 
+  - 2^(3)-1=7
+#### #_of_nodes_except_bottom(from height)
+- 2^(height-1)-1
+  - 2^(3-1)-1=3
+#### #_of_nodes_in_bottom(from height)
+- 2^(height-1)
+  - 2^(3-1)=4
+#### #_of_nodes_in_bottom(from #_of_all_nodes)
+- (n+1)/2
+  - (7+1)/2
+#### #_of_nodes_in_bottom(from #_of_nodes_in_other_levels)
+- sum(#_of_nodes_except_bottom)+1
+#### Height of perfect binary tree(from #_of_all_nodes)
+- log(#_of_all_nodes +1)
+- log(7+1)=3
+#### Height of perfect binary tree(from #_of_nodes_in_bottom)
+#### Height of the tree(from #_of_nodes_in_bottom)
+- log(#_of_nodes_in_bottom)+1
+#### Height of the tree(from n)
+- log(n)
+  - log(4)+1=3
+
 ### BFS
 #### General Binary Tree BFS Traversal
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/general_binaryTreeTraversal_BFS.java)
@@ -53,7 +81,7 @@
     - If skewed tree, the size of our recursion stacks is the number of nodes.
     - In a perfectly balanced tree space would be the height of the tree = O(logn)
 - [BFS](src/main/java/treeGraphs/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_BFS.java)
-- Time O(n)
-  - We visit each node
-- Space O(n)
-  - Queue of the lowest level can reach O(n)
+  - Time O(n)
+    - We visit each node
+  - Space O(n)
+    - Queue of the lowest level can reach O(n)

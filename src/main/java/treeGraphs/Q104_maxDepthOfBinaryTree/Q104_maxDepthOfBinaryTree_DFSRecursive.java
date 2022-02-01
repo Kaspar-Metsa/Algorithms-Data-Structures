@@ -10,7 +10,7 @@ class Q104_maxDepthOfBinaryTree_DFSRecursive {
         return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
     }
 /*
-    Alternative DFS recursive:
+    Alternative DFS recursive, pretty unnecessary to pass in depth variable:
     public int maxDepth(TreeNode root) {
         return maxDep(root, 0);
     }
