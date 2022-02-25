@@ -8,28 +8,28 @@ import java.util.List;
 
 public class Q103_binaryTreeZigzagLevelOrderTraversal_DFS {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> solution = new ArrayList<>();
-        traverse(root, solution, 0);
-        return solution;
+        List<List<Integer>> sol = new ArrayList<>(); //This could also be LinkedList
+        traverse(root, sol, 0);
+        return sol;
     }
 
-    private void traverse(TreeNode current, List<List<Integer>> solution, int level) {
-        if (current == null) return;
+    private void traverse(TreeNode cur, List<List<Integer>> sol, int lvl) {
+        if (cur == null) return;
 
-        if (solution.size() <= level) {
-            List<Integer> newLevel = new LinkedList<>();
-            solution.add(newLevel);
+        if (sol.size() <= lvl) {
+            LinkedList<Integer> newLvl = new LinkedList<>();//This can't be ArrayList, because we use addFirst() later
+            sol.add(newLvl);
         }
 
-        List<Integer> collection = solution.get(level);
-        if (level % 2 == 0) {
-            collection.add(current.val);
+        List<Integer> lvlColl = sol.get(lvl);
+        if (lvl % 2 == 0) {
+            lvlColl.add(cur.val);
         } else {
-//            ((LinkedList<Integer>) collection).addFirst(current.val);
-            collection.add(0, current.val);
+            ((LinkedList<Integer>) lvlColl).addFirst(cur.val); //Because lvlColl.add(0, cur.val); will move every element forward by 1 index. We cast because addFirst() is a Deque interface method, not List interface method
+//            lvlColl.add(0, cur.val);
         }
 
-        traverse(current.left, solution, level + 1);
-        traverse(current.right, solution, level + 1);
+        traverse(cur.left, sol, lvl + 1);
+        traverse(cur.right, sol, lvl + 1);
     }
 }

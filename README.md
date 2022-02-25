@@ -118,4 +118,11 @@
     - List of all levels can contain **n** lists if skewed tree
     - Level list can contain at most **(n+1)/2** elements if balanced tree
     - queue can contain at most **(n+1)/2** elements if balanced tree
-    - Total if balanced tree: **2xO(n)+O(log(n+1)) = O(n)**
+    - Total if balanced tree: **O(n)+2xO((n+1)/2) = O(n)**
+- [DFS](src/main/java/treeGraphs/Q103_binaryTreeZigzagLevelOrderTraversal/Q103_binaryTreeZigzagLevelOrderTraversal_DFS.java)
+  - Time O(n)
+    - We visit each node once
+  - Space O(n)
+    - In a skewed tree stack is O(n)
+    - List<List<Integer>> can contain n elements in skewed tree
+    - List<Integer> lvlColl can contain (n+1)/2 elements in bottom level if balanced tree
