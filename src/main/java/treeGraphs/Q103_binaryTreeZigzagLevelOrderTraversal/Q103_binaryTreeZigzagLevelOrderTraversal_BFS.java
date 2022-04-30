@@ -6,32 +6,32 @@ import java.util.*;
 
 public class Q103_binaryTreeZigzagLevelOrderTraversal_BFS {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> listList = new ArrayList<>();
-        if(root==null) return listList;
+        List<List<Integer>> answer = new ArrayList<>();
+        if (root == null) return answer;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
-        boolean ltf=false;
-        while(!q.isEmpty()){
+        boolean rtl = false;
+        while (!q.isEmpty()) {
             LinkedList<Integer> level = new LinkedList<>();
-            int size=q.size();
-            ltf=!ltf;
-            for(int i = 0; i<size;i++){
-                TreeNode current = q.poll();
-                if(ltf){
-                    level.addLast(current.val);
+            int qSize = q.size();
+            rtl = !rtl;
+            for (int i = 0; i < qSize; i++) {
+                TreeNode cNode = q.remove();
+                if (rtl) {
+                    level.addLast(cNode.val);
                 } else {
-                    level.addFirst(current.val);
+                    level.addFirst(cNode.val);
                 }
-                if(current.left!=null){
-                    q.offer(current.left);
+                if (cNode.left != null) {
+                    q.offer(cNode.left);
                 }
-                if(current.right!=null){
-                    q.offer(current.right);
+                if (cNode.right != null) {
+                    q.offer(cNode.right);
                 }
             }
-            listList.add(level);
+            answer.add(level);
         }
-        return listList;
+        return answer;
     }
 
 
