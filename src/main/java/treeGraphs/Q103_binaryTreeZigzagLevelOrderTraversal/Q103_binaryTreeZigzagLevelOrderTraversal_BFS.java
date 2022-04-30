@@ -4,20 +4,25 @@ import treeGraphs.util.TreeNode;
 
 import java.util.*;
 
+/*
+    LinkedList addLast and addFirst are both O(1) because Java's LinkedList documentation says that:
+    "All the operations perform as could be expected for a doubly-linked list"
+    More specifically in linkLast() method, we can see that LinkedList holds a pointer to last element: "last=newNode"
+*/
 public class Q103_binaryTreeZigzagLevelOrderTraversal_BFS {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> answer = new ArrayList<>();
         if (root == null) return answer;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
-        boolean rtl = false;
+        boolean ltr = false;
         while (!q.isEmpty()) {
             LinkedList<Integer> level = new LinkedList<>();
             int qSize = q.size();
-            rtl = !rtl;
+            ltr = !ltr;
             for (int i = 0; i < qSize; i++) {
                 TreeNode cNode = q.remove();
-                if (rtl) {
+                if (ltr) {
                     level.addLast(cNode.val);
                 } else {
                     level.addFirst(cNode.val);
