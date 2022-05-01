@@ -21,12 +21,11 @@ public class Q103_binaryTreeZigzagLevelOrderTraversal_DFS {
             sol.add(newLvl);
         }
 
-        List<Integer> lvlColl = sol.get(lvl);
+        List<Integer> lvlList = sol.get(lvl);
         if (lvl % 2 == 0) {
-            lvlColl.add(cur.val);
+            lvlList.add(cur.val); // Same as addLast in LinkedList
         } else {
-            ((LinkedList<Integer>) lvlColl).addFirst(cur.val); //Because lvlColl.add(0, cur.val); will move every element forward by 1 index. We cast because addFirst() is a Deque interface method, not List interface method
-//            lvlColl.add(0, cur.val);
+            ((LinkedList<Integer>) lvlList).addFirst(cur.val); //Because lvlColl.add(0, cur.val); will move every element forward by 1 index. We cast because addFirst() is a Deque interface method, not List interface method
         }
 
         traverse(cur.left, sol, lvl + 1);

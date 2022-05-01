@@ -13,25 +13,25 @@ public class Q103_binaryTreeZigzagLevelOrderTraversal_BFS {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> answer = new ArrayList<>();
         if (root == null) return answer;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        boolean ltr = false;
-        while (!q.isEmpty()) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int lvl = -1;
+        while (!queue.isEmpty()) {
             LinkedList<Integer> level = new LinkedList<>();
-            int qSize = q.size();
-            ltr = !ltr;
+            lvl++;
+            int qSize = queue.size();
             for (int i = 0; i < qSize; i++) {
-                TreeNode cNode = q.remove();
-                if (ltr) {
+                TreeNode cNode = queue.remove();
+                if (lvl % 2 == 0) {
                     level.addLast(cNode.val);
                 } else {
                     level.addFirst(cNode.val);
                 }
                 if (cNode.left != null) {
-                    q.offer(cNode.left);
+                    queue.add(cNode.left);
                 }
                 if (cNode.right != null) {
-                    q.offer(cNode.right);
+                    queue.add(cNode.right);
                 }
             }
             answer.add(level);
