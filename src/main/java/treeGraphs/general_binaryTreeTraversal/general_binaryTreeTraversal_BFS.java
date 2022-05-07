@@ -1,6 +1,7 @@
 package treeGraphs.general_binaryTreeTraversal;
 
 import treeGraphs.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,8 +11,7 @@ public class general_binaryTreeTraversal_BFS {
 
     List<Integer> generalTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
         while (!queue.isEmpty()) {
             TreeNode currentNode = queue.remove();
             answer.add(currentNode.getVal());

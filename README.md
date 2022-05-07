@@ -54,7 +54,7 @@
 - log<sub>2</sub>(#_of_nodes_in_bottom)+1
 #### Height of perfect binary tree(from #_of_nodes_in_bottom)
 
-### BFS
+### Trees and Graphs
 #### General Binary Tree BFS Traversal
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/general_binaryTreeTraversal_BFS.java)
   - Time O(n)
@@ -123,6 +123,29 @@
   - Time O(n)
     - We visit each node once
   - Space O(n)
-    - In a skewed tree stack is O(n)
-    - List<List<Integer>> can contain n elements in skewed tree
-    - List<Integer> lvlColl can contain (n+1)/2 elements in bottom level if balanced tree
+    - In a skewed tree recursion stack is O(n)
+    - List<List<Integer>> (for answer) can contain n elements in skewed tree
+    - List<Integer> currentLevelList can contain (n+1)/2 elements in bottom level if balanced tree
+#### 200. Number of Islands
+- Questions to ourselves
+  - Does the order of traversal matter?
+    - No
+  - How to avoid double counting?
+    - By modifying the input grid
+- https://leetcode.com/problems/number-of-islands/
+
+- [DFS](src/main/java/treeGraphs/Q200_numberOfIslands/Q200_numberOfIslands_DFS.java)
+  - Time
+    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where n=elements in grid
+      - Because in worst case where all elements are 1, then we do one large DFS into all directions and turn all 1-s into 0-s, but then we still iterate through all elements again.
+  - Space
+    - O(MxN) where M is rows(outside array) and N is columns(inside array)
+      - Because in worst case where all elements are 1, our recursion stack is going to MxN deep
+
+- [BFS](src/main/java/treeGraphs/Q200_numberOfIslands/Q200_numberOfIslands_BFS.java)
+  - Time
+    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where n=elements in grid
+      - Because in worst case where all elements are 1, then we do one large DFS into all directions and turn all 1-s into 0-s, but then we still iterate through all elements again.
+  - Space
+    - O(min(MxN)) where M is rows(outside array) and N is columns(inside array).
+      - Because even in worst where all elements are 1, we will not be adding all these elements to our queue at the same time 
