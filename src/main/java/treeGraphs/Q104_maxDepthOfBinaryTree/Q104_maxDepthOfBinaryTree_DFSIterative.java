@@ -1,30 +1,31 @@
 package treeGraphs.Q104_maxDepthOfBinaryTree;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 
 import treeGraphs.util.TreeNode;
 
 public class Q104_maxDepthOfBinaryTree_DFSIterative {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
-        ArrayDeque<TreeNode> nodeStack = new ArrayDeque<>();
-        ArrayDeque<Integer> depthStack = new ArrayDeque<>();
+        Deque<TreeNode> nodeStack = new ArrayDeque<>();
+        Deque<Integer> depthStack = new ArrayDeque<>();
         nodeStack.push(root);
-        depthStack.push(1);
-        int maxDepthSoFar = 0;
+        int maxDepth = 1;
+        depthStack.push(maxDepth);
         while (!nodeStack.isEmpty()) {
-            TreeNode current = nodeStack.pop();
-            int currentMaxDepth = depthStack.pop();
-            maxDepthSoFar = Math.max(currentMaxDepth, maxDepthSoFar);
-            if (current.left != null) {
-                nodeStack.push(current.left);
-                depthStack.push(currentMaxDepth + 1);
+            TreeNode curNode = nodeStack.pop();
+            int curMaxDepth = depthStack.pop();
+            maxDepth = Math.max(curMaxDepth, maxDepth);
+            if (curNode.left != null) {
+                nodeStack.push(curNode.left);
+                depthStack.push(curMaxDepth + 1);
             }
-            if (current.right != null) {
-                nodeStack.push(current.right);
-                depthStack.push(currentMaxDepth + 1);
+            if (curNode.right != null) {
+                nodeStack.push(curNode.right);
+                depthStack.push(curMaxDepth + 1);
             }
         }
-        return maxDepthSoFar;
+        return maxDepth;
     }
 }
