@@ -1,15 +1,15 @@
 package treeGraphs.Q111_minDepthOfBinaryTree;
 
-import treeGraphs.util.TreeNode;
-
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
+
+import treeGraphs.util.TreeNode;
 
 public class Q111_minDepthOfBinaryTree_BFS {
     public int minDepth(TreeNode root) {
         if (root == null) return 0;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
         int depth = 1;
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -19,10 +19,10 @@ public class Q111_minDepthOfBinaryTree_BFS {
                     return depth;
                 }
                 if (current.left != null) {
-                    queue.add(current.left);
+                    queue.offer(current.left);
                 }
                 if (current.right != null) {
-                    queue.add(current.right);
+                    queue.offer(current.right);
                 }
             }
             depth++;

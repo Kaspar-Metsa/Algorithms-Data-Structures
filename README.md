@@ -89,7 +89,7 @@
     - Space O(n)
       - Worst case if skewed, then call stack is n levels deep
       - Best case is completely balanced tree, then call stack is O(h)=O(log(n+1)) deep
-#### Maximum Depth of Binary Tree
+#### 104. Maximum Depth of Binary Tree
 - https://leetcode.com/problems/maximum-depth-of-binary-tree/
 - [DFS recursive](src/main/java/treeGraphs/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_DFSRecursive.java)
   - Time O(n)
