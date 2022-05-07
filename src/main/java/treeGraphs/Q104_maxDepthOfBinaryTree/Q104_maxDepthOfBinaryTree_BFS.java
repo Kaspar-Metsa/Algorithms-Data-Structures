@@ -1,12 +1,10 @@
 package treeGraphs.Q104_maxDepthOfBinaryTree;
 
-import treeGraphs.util.TreeNode;
-
 import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import treeGraphs.util.TreeNode;
 
 public class Q104_maxDepthOfBinaryTree_BFS {
     public int maxDepth(TreeNode root) {
@@ -15,8 +13,7 @@ public class Q104_maxDepthOfBinaryTree_BFS {
         Queue<TreeNode> queue = new ArrayDeque<>(List.of(root));
         int maxSoFar = 0;
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < queue.size(); i++) {
                 TreeNode currentNode = queue.remove();
                 if (currentNode.left != null) {
                     queue.add(currentNode.left);
