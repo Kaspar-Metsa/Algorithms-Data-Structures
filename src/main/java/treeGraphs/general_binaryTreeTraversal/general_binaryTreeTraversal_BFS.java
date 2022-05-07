@@ -1,25 +1,27 @@
 package treeGraphs.general_binaryTreeTraversal;
 
-import treeGraphs.util.TreeNode;
-
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import treeGraphs.util.TreeNode;
 
 public class general_binaryTreeTraversal_BFS {
 
     List<Integer> generalTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>(List.of(root));
+        if (root == null) return answer;
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode currentNode = queue.remove();
-            answer.add(currentNode.getVal());
+            TreeNode currentNode = queue.poll();
+            answer.add(currentNode.val);
             if (currentNode.left != null) {
-                queue.add(currentNode.left);
+                queue.offer(currentNode.left);
             }
             if (currentNode.right != null) {
-                queue.add(currentNode.right);
+                queue.offer(currentNode.right);
             }
         }
         return answer;
