@@ -2,14 +2,14 @@ package treeGraphs.Q200_numberOfIslands;
 
 public class Q200_numberOfIslands_DFS {
     public int numIslands(char[][] grid) {
-        char[][] tempGrid = grid; // To avoid changing array
+//        char[][] grid = Arrays.stream(grid).map(a -> Arrays.copyOf(a, a.length)).toArray(char[][]::new); // To make a copy if input grid can't be changed
         if (grid.length == 0 || grid[0].length == 0) return 0;
         int count = 0;
-        for (int i = 0; i < tempGrid.length; i++) {
-            for (int j = 0; j < tempGrid[i].length; j++) {
-                if (tempGrid[i][j] == '1') {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
                     count += 1;
-                    callDFS(tempGrid, i, j);
+                    callDFS(grid, i, j);
                 }
             }
         }
