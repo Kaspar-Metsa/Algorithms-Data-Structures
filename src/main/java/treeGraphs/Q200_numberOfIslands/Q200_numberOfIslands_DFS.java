@@ -21,8 +21,8 @@ public class Q200_numberOfIslands_DFS {
 
         grid[i][j] = '0';
         callDFS(grid, i - 1, j); //up
+        callDFS(grid, i, j + 1); //right
         callDFS(grid, i + 1, j); //down
         callDFS(grid, i, j - 1); //left
-        callDFS(grid, i, j + 1); //right
     }
 }
