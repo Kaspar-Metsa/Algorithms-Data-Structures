@@ -11,7 +11,7 @@ public class Q200_numberOfIslands_BFS {
         Queue<int[]> landQueue = new ArrayDeque<>();
         int count = 0;
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
+            for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == '1' && !visited[i][j]) {
                     landQueue.offer(new int[]{i, j});
                     visited[i][j] = true;
