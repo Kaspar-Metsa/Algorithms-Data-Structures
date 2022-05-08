@@ -8,7 +8,7 @@ public class Q200_numberOfIslands_DFS {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == '1') {
-                    count += 1;
+                    count++;
                     callDFS(grid, i, j);
                 }
             }
