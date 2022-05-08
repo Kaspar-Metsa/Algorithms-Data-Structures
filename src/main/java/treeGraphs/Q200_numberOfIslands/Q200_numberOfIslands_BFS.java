@@ -30,18 +30,22 @@ public class Q200_numberOfIslands_BFS {
             {-1, 0}     // Up
     };
 
-    private void bfs(char[][] grid, Queue<int[]> queue, boolean[][] visited) {
-        while (!queue.isEmpty()) {
-            int[] curNode = queue.poll();
+    private void bfs(char[][] grid, Queue<int[]> landQueue, boolean[][] visited) {
+        while (!landQueue.isEmpty()) {
+            int[] curNode = landQueue.poll();
             for (int[] dir : dirs) {
                 int x = curNode[0] + dir[0];
                 int y = curNode[1] + dir[1];
 
-                if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || visited[x][y] || grid[x][y] == '0') continue;
+                if (isWithinBounds(grid, x, y) || visited[x][y] || grid[x][y] == '0') continue;
 
                 visited[x][y] = true;
-                queue.offer(new int[]{x, y});
+                landQueue.offer(new int[]{x, y});
             }
         }
+    }
+
+    private boolean isWithinBounds(char[][] grid, int x, int y) {
+        return x < 0 || x >= grid.length || y < 0 || y >= grid[0].length;
     }
 }
