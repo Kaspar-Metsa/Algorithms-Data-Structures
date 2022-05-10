@@ -46,32 +46,84 @@
 - n - (n+1)/2
 #### #_of_nodes_in_next_to_bottom_level(from n)
 - (n+1)/4
-  - Because 
+  - Because
     - (#_of_bottom_nodes)=(n+1)/2
     - (#_of_nodes_except_bottom)=n-(n+1)/2
     - (x+1)/2 x=n-(n+1)/2 (n-(n+1)/2+1)/2=((2n-n-1+2)/2)/2=((n+1)/2)/2=(n+1)*1/4=(n+1)/4
+
 #### Height of the tree(from #_of_nodes_in_bottom)
+
 - log<sub>2</sub>(#_of_nodes_in_bottom)+1
+
 #### Height of perfect binary tree(from #_of_nodes_in_bottom)
 
 ### Trees and Graphs
-#### General Binary Tree BFS Traversal
-- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/general_binaryTreeTraversal_BFS.java)
+
+#### Binary Tree BFS Level Order Traversal
+
+- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
   - Time O(n)
     - We visit each node once
     - We are doing enqueue O(1) and dequeue O(1) for each node = 2n*O(1)=O(n)
   - Space 2xO(n)=O(n)
     - We return a list with all nodes, at most n elements so **O(n)**
-    - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)=(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
+    - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)=(
+      n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
+
+#### Binary Tree DFS In Order Traversal
+
+- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversal_DFS.java)
+- Useful for returning nodes in non-decreasing order in Binary Search Tree
+- Variation for reverse: non-increasing order in Binary Search Tree
+  - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversalReversed_DFS.java)
+
+#### Binary Tree DFS Pre Order Traversal
+
+- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PreOrderTraversal_DFS.java)
+- Useful for
+  - Copying the tree
+  - Getting prefix expression of an expression tree
+
+#### Binary Tree DFS Post Order Traversal
+
+- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PostOrderTraversal_DFS.java)
+- Useful for
+  - Deleting the tree
+  - Getting postfix expression of the expression tree
+
+#### Binary Tree DFS Pre-Order, In-Order, Post-Order Traversal Complexity
+
+- Time O(n)
+  - 1st explanation(easy)
+    - The amount of work we do for each node is constant
+  - 2nd explanation(medium)
+    - For a graph, DFS time complexity is O(n+m), n=number of nodes, m=number of edges
+    - Binary tree is a graph where number of edges m originating from each node is 2
+    - Total edges in binary tree is n-1
+    - Time O(n)=O(n+m)=O(n+(n-1))=O(n)
+  - 3rd explanation(hard)
+    - Easy
+      proof: https://www.baeldung.com/cs/tree-traversal-time-complexity#time-complexity-of-the-tree-traversals
+    - Proof using Master's Theorem
+      - https://stackoverflow.com/a/56799754
+- Space
+  - O(n) - size of the stack
+    - In skewed tree O(n)=h=n
+    - In balanced tree O(n)=h=log<sub>2</sub>(n+1)
+
 #### Level Order Binary Tree BFS Traversal
+
 - https://leetcode.com/problems/binary-tree-level-order-traversal/
   - [Solution](src/main/java/treeGraphs/Q102_binaryTreeLevelOrderTraversal/Q102_binaryTreeLevelOrderTraversal_BFS.java)
     - Time O(n)
       - We visit each node once
       - We are doing enqueue O(1) and dequeue O(1) for each node = **2nxO(1)=O(n)**
     - Space 2xO(n) because double list + O(n) for queue if balanced tree = O(n)
-      - We store a list of (list for each level). There can be n such lists if skewed tree. This is **O(n)**
-      - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)=(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
+      - We store a list of (list for each level). There can be n such lists if skewed tree. This
+        is **O(n)**
+      - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)
+        =(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
+
 #### Minimum Depth of Binary Tree
 - https://leetcode.com/problems/minimum-depth-of-binary-tree/
   - [BFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_BFS.java)

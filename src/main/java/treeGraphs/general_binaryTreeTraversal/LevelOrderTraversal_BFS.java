@@ -7,7 +7,7 @@ import java.util.Queue;
 
 import treeGraphs.util.TreeNode;
 
-public class general_binaryTreeTraversal_BFS {
+public class LevelOrderTraversal_BFS {
 
     List<Integer> generalTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();

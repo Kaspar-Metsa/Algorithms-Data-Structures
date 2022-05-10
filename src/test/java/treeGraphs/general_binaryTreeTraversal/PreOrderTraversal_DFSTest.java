@@ -2,19 +2,20 @@ package treeGraphs.general_binaryTreeTraversal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import treeGraphs.Q104_maxDepthOfBinaryTree.Q104_maxDepthOfBinaryTree_BFS;
-import treeGraphs.util.TreeNode;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import treeGraphs.util.TreeNode;
 
-class general_binaryTreeTraversal_BFSTest {
-    general_binaryTreeTraversal_BFS general_binaryTreeTraversal_bfs;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class PreOrderTraversal_DFSTest {
+
+    PreOrderTraversal_DFS preOrderTraversal_dfs;
 
     @BeforeEach
     void beforeEach() {
-        general_binaryTreeTraversal_bfs = new general_binaryTreeTraversal_BFS();
+        preOrderTraversal_dfs = new PreOrderTraversal_DFS();
     }
 
     /*
@@ -34,17 +35,17 @@ class general_binaryTreeTraversal_BFSTest {
         TreeNode n6 = new TreeNode(6);
         TreeNode n7 = new TreeNode(7);
 
-        n1.left=n2;
-        n1.right=n3;
+        n1.left = n2;
+        n1.right = n3;
 
-        n2.left=n4;
-        n2.right=n5;
+        n2.left = n4;
+        n2.right = n5;
 
-        n3.left=n6;
-        n3.right=n7;
+        n3.left = n6;
+        n3.right = n7;
 
-        List<Integer> actualAnswer = general_binaryTreeTraversal_bfs.generalTraversal(n1);
-        List<Integer> expectedAnswer = List.of(1,2,3,4,5,6,7);
+        List<Integer> actualAnswer = preOrderTraversal_dfs.preOrderTraversal(n1);
+        List<Integer> expectedAnswer = List.of(1, 2, 4, 5, 3, 6, 7);
         assertEquals(expectedAnswer, actualAnswer);
     }
 }
