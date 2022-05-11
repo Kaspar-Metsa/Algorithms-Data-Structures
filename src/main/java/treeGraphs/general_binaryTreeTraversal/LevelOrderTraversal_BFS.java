@@ -8,7 +8,6 @@ import java.util.Queue;
 import treeGraphs.util.TreeNode;
 
 public class LevelOrderTraversal_BFS {
-
     List<Integer> generalTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();
         if (root == null) return answer;
