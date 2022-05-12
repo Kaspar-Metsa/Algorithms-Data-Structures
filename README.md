@@ -178,7 +178,41 @@
     - In a skewed tree recursion stack is O(n)
     - List<List<Integer>> (for answer) can contain n elements in skewed tree
     - List<Integer> currentLevelList can contain (n+1)/2 elements in bottom level if balanced tree
+
+#### 199. Right side view
+
+- https://leetcode.com/problems/binary-tree-right-side-view/
+- [BFS](src/main/java/treeGraphs/Q199_rightSideView/Q199_rightSideView_BFS.java)
+  - Time O(n)
+    - Because we visit every node
+  - Space O(n)=O(L) where L is the maximum number of nodes in a level=(n+1)/2
+- [DFS](src/main/java/treeGraphs/Q199_rightSideView/Q199_rightSideView_DFS.java)
+  - Time O(n)
+    - Because we visit every node
+  - Space O(n)= O(height of the tree) for storing the call stack, in worst case with skewed tree h=n
+- Space complexity is better for
+  - BFS if tree is very deep but not wide because in this case DFS's space complexity is O(n)
+    because n=height but BFS's space complexity is O((n+1/2))
+  - DFS if tree is very wide but not deep bec
+
+#### 235. Lowest Common Ancestor
+
+- https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+- [DFS](src/main/java/treeGraphs/Q235_lowestCommonAncestor/Q235_lowestCommonAncestor_DFS.java)
+  - Time O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+  - Space O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+- [BFS](src/main/java/treeGraphs/Q235_lowestCommonAncestor/Q235_lowestCommonAncestor_BFS.java)
+  - Time O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+  - Space O(1)
+
 #### 200. Number of Islands
+
 - Questions to ourselves
   - Does the order of traversal matter?
     - No
