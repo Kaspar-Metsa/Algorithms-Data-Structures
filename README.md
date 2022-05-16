@@ -10,7 +10,7 @@
 ### 4. Non-array application
 ## Palindrome
 
-## Trees and Graphs
+## Trees
 ### Logarithm formulas
 #### a<sup>log<sub>a</sub>X</sup>=X
 #### logA−logB = log(A/B)
@@ -57,14 +57,16 @@
 
 #### Height of perfect binary tree(from #_of_nodes_in_bottom)
 
-### Trees and Graphs
+## Trees and Graphs
+
+### General
 
 #### Binary Tree BFS Level Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
   - Time O(n)
     - We visit each node once
-    - We are doing enqueue O(1) and dequeue O(1) for each node = 2n*O(1)=O(n)
+    - We are doing enqueue O(1) and dequeue O(1) for each node = n*2*O(1)=O(n)
   - Space 2xO(n)=O(n)
     - We return a list with all nodes, at most n elements so **O(n)**
     - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)=(
@@ -111,7 +113,109 @@
     - In skewed tree O(n)=h=n
     - In balanced tree O(n)=h=log<sub>2</sub>(n+1)
 
-#### Level Order Binary Tree BFS Traversal
+### Binary Search Tree
+
+- Questions
+  - Are there duplicate values?
+    - If answer is yes, it is automatically not a valid BST
+- Test cases
+  - True cases
+    - One node
+    - True case with depth 3 each side, 7 total nodes
+  - False cases
+    - 3 nodes: Where right child is smaller than root
+    - 3 nodes: Where left child is larger than root
+    - 7 nodes: Where left is smaller than root but left.right child is larger than root
+    - 7 nodes: Where right is larger than root but right.left child is smaller than root
+
+#### 235. Lowest Common Ancestor (Easy)
+
+- https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+- [DFS](src/main/java/treeGraphs/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_DFS.java)
+  - Time O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+  - Space O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+- [BFS](src/main/java/treeGraphs/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_BFS.java)
+  - Time O(n)=O(height)
+    - In skewed tree height=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+  - Space O(1)
+
+#### Q98 Validate Binary Search Tree (Medium)
+
+- Questions
+  - Can node value be equal to or greater than 2<sup>31</sup>-1
+  - Can there be duplicates - if duplicates, BST is not valid
+
+#### Naive
+
+- Idea is to do take root value X and then check in each subtree if each element is smaller/larger
+  than X
+  - If it is, we go to one child left/right and do the same
+- Time O(n2)
+- To show an example where it's n2 and to show it can't be worse than n2
+  - If nodes is n-1=4
+  - The total number of times we visit a bottom leaf is **O(n2)**
+    - (n-1)+(n-2)+(n-3)+(n-4)=((n-1)*(n-1+1))/2=(n2-n)/2=O(n2)
+    - 4 +3 +2 +1 =4*(4+1)/2 =10
+      - This is because root node has n-1 children, root.left has n-2 children
+      - if 4 is root, 4 has 3 children, 4.left has 2 children etc
+  - **TODO: Lets show it with recurrence relation**
+- Space O(n)
+  - Because we don't store node values anywhere, call stack can be as deep as the height of the tree
+    - Height if skewed = n
+    - Height if balanced = log<sub>2</sub>(n+1)
+
+#### Limits
+
+- Idea is to store the max/min a value can be in each branch
+  - We use the idea that if root is X, then root.left.right.right.right...right must be smaller than
+    X
+- Max integer value int Java is 2 147 483 647 = 2<sup>31</sup>-1
+- Max node value in input can also be 2 147 483 647 = 2<sup>31</sup>-1
+  - That's why we **can't use int or Integer** to store max value because max value needs to larger
+    than node.val
+  - We have to use Long or BigInteger
+    - because long max value is 9 223 372 036 854 775 808=2<sup>63</sup>-1
+- Time O(n)
+  - Because we traverse each node once
+- Space O(n)
+  - Because we don't store node values anywhere, call stack can be as deep as the height of the tree
+    - Height if skewed = n
+    - Height if balanced = log<sub>2</sub>(n+1)
+
+#### Inorder
+
+- Idea is to do regular inorder traversal on BST which traverses node values in non-decreasing order
+  and store values in a list, then check if list is sorted
+  - If list is sorted, we have a valid BST
+- Time O(n)
+  - Because we traverse each node once
+- Space 2xO(n)=O(n)
+  - The list is O(n) because it contains all nodes
+  - The call stack is height
+    - Height if skewed = n
+    - Height if balanced = log<sub>2</sub>(n+1)
+
+#### Inorder Optimized
+
+- Idea is to do regular inorder traversal on BST which traverses node values in non-decreasing order
+  and not store values in a list, but instead just compare with previously traversed value
+  - If previously traversed value is smaller, we have a valid BST
+- Time O(n)
+  - Because we traverse each node once
+- Space O(n)
+  - There is no list
+  - The call stack is height
+    - Height if skewed = n
+    - Height if balanced = log<sub>2</sub>(n+1)
+
+### Binary Tree BFS & DFS
+
+#### Q102 Level Order Binary Tree BFS Traversal
 
 - https://leetcode.com/problems/binary-tree-level-order-traversal/
   - [Solution](src/main/java/treeGraphs/Q102_binaryTreeLevelOrderTraversal/Q102_binaryTreeLevelOrderTraversal_BFS.java)
@@ -124,7 +228,7 @@
       - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)
         =(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
 
-#### Minimum Depth of Binary Tree
+#### Q111 Minimum Depth of Binary Tree
 - https://leetcode.com/problems/minimum-depth-of-binary-tree/
   - [BFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_BFS.java)
     - Time O(n)
@@ -195,34 +299,22 @@
     because n=height but BFS's space complexity is O((n+1/2))
   - DFS if tree is very wide but not deep bec
 
-#### 235. Lowest Common Ancestor
+### Graphs
 
-- https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-- [DFS](src/main/java/treeGraphs/Q235_lowestCommonAncestor/Q235_lowestCommonAncestor_DFS.java)
-  - Time O(n)=O(height)
-    - In skewed tree height=n
-    - In balanced tree h=log<sub>2</sub>(n+1)
-  - Space O(n)=O(height)
-    - In skewed tree height=n
-    - In balanced tree h=log<sub>2</sub>(n+1)
-- [BFS](src/main/java/treeGraphs/Q235_lowestCommonAncestor/Q235_lowestCommonAncestor_BFS.java)
-  - Time O(n)=O(height)
-    - In skewed tree height=n
-    - In balanced tree h=log<sub>2</sub>(n+1)
-  - Space O(1)
+#### 200. Number of Islands (Medium)
 
-#### 200. Number of Islands
-
+- https://leetcode.com/problems/number-of-islands/
 - Questions to ourselves
   - Does the order of traversal matter?
     - No
   - How to avoid double counting?
     - By modifying the input grid
-- https://leetcode.com/problems/number-of-islands/
+
 
 - [DFS](src/main/java/treeGraphs/Q200_numberOfIslands/Q200_numberOfIslands_DFS.java)
   - Time
-    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where n=elements in grid
+    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where
+      n=elements in grid
       - Because in worst case where all elements are 1, then we do one large DFS into all directions and turn all 1-s into 0-s, but then we still iterate through all elements again.
   - Space
     - O(MxN) where M is rows(outside array) and N is columns(inside array)

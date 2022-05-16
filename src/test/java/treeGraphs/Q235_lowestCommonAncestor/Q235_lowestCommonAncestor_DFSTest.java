@@ -3,6 +3,7 @@ package treeGraphs.Q235_lowestCommonAncestor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import treeGraphs.binary_search_tree.Q235_lowestCommonAncestor_bst.Q235_lowestCommonAncestor_DFS;
 import treeGraphs.util.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

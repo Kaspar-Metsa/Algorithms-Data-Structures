@@ -1,4 +1,4 @@
-package treeGraphs.Q235_lowestCommonAncestor;
+package treeGraphs.binary_search_tree.Q235_lowestCommonAncestor_bst;
 
 import treeGraphs.util.TreeNode;
 
