@@ -13,43 +13,43 @@ public class Q98_validate_binary_search_tree_DFS_inorder_optimized {
         Not sure if better...
     */
 
-    boolean isValid = true;
-    Integer prev = null;
-
-    public boolean isValidBST(TreeNode root) {
-        inorder(root);
-        return this.isValid;
-    }
-
-    private void inorder(TreeNode node) {
-        if (node != null) {
-            inorder(node.left);
-            if (this.prev != null && this.prev >= node.val) {
-                this.isValid = false;
-                return;
-            }
-            this.prev = node.val;
-            inorder(node.right);
-        }
-    }
-
-
+//    boolean isValid = true;
+//    Integer prev = null;
+//
 //    public boolean isValidBST(TreeNode root) {
-//        boolean[] isValid = new boolean[]{true};
-//        Integer[] prev = new Integer[]{null};
-//        inorder(root, prev, isValid);
-//        return isValid[0];
+//        inorder(root);
+//        return this.isValid;
 //    }
 //
-//    private void inorder(TreeNode node, Integer[] prev, boolean[] isValid) {
+//    private void inorder(TreeNode node) {
 //        if (node != null) {
-//            inorder(node.left, prev, isValid);
-//            if (prev[0] != null && prev[0] >= node.val) {
-//                isValid[0] = false;
+//            inorder(node.left);
+//            if (this.prev != null && this.prev >= node.val) {
+//                this.isValid = false;
 //                return;
 //            }
-//            prev[0]=node.val;
-//            inorder(node.right, prev, isValid);
+//            this.prev = node.val;
+//            inorder(node.right);
 //        }
 //    }
+
+
+    public boolean isValidBST(TreeNode root) {
+        boolean[] isValid = new boolean[]{true};
+        Integer[] prev = new Integer[]{null};
+        inorder(root, prev, isValid);
+        return isValid[0];
+    }
+
+    private void inorder(TreeNode node, Integer[] prev, boolean[] isValid) {
+        if (node != null) {
+            inorder(node.left, prev, isValid);
+            if (prev[0] != null && prev[0] >= node.val) {
+                isValid[0] = false;
+                return;
+            }
+            prev[0] = node.val;
+            inorder(node.right, prev, isValid);
+        }
+    }
 }

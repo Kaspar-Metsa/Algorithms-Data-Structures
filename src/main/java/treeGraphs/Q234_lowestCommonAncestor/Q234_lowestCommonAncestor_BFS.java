@@ -12,7 +12,7 @@ public class Q234_lowestCommonAncestor_BFS {
         var map = new HashMap<TreeNode, TreeNode>();
         map.put(root, null);
         stack.push(root);
-        while (!map.containsKey(p) || !map.containsKey(q)) {
+        while (!(map.containsKey(p) && map.containsKey(q))) {
             var node = stack.pop();
             if (node.left != null) {
                 map.put(node.left, node);

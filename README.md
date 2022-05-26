@@ -128,7 +128,7 @@
     - 7 nodes: Where left is smaller than root but left.right child is larger than root
     - 7 nodes: Where right is larger than root but right.left child is smaller than root
 
-#### 235. Lowest Common Ancestor (Easy)
+#### 235. Lowest Common Ancestor for Binary Search Tree (Easy)
 
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 - [DFS](src/main/java/treeGraphs/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_DFS.java)
@@ -143,6 +143,18 @@
     - In skewed tree height=n
     - In balanced tree h=log<sub>2</sub>(n+1)
   - Space O(1)
+
+#### 234. Lowest Common Ancestor for Binary Tree (Medium)
+
+- DFS
+  - Time O(n) because worst case we visit all ndodes
+  - Space O(n) because stack is N with skewed tree
+- BFS
+  - Time O(n) because worst case we visit all ndodes
+  - Space O(n)
+    - Because in the worst case space utilized by the stack, the parent pointer dictionary and the
+      ancestor set,
+  - would be N each, since the height of a skewed binary tree could be N.
 
 #### Q98 Validate Binary Search Tree (Medium)
 
@@ -228,14 +240,44 @@
       - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)
         =(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
 
+#### Q107 Binary Tree Level Order Traversal II
+
+- DFS
+  - Time O(n)
+    - Because same as regular preOrder because
+      - Getting item from arraylist by index is O(1)
+      - Adding an item to beginning of arraylist is O(n)
+    - If we used LinkedList instead of ArrayList, we would have to get by index which is O(n) and we
+      would have to do it more often with balanced tree than, adding new
+      - if Skewed tree
+        - Doesn't matter which we do because we do N times adding new lists, N times getting the
+          list by index
+      - if Balanced tree
+        - ArrayList is better because we do O(h) times getting list and O(n) times adding items
+  - Space O(n)
+    - Because preorder skewed tree stack size is n
+    - Returned list can either be
+      - size n if skewed tree
+      - size height with inner list containing log<sub>2</sub>(n+1) elements if balanced tree
+
+- BFS
+- Time O(n)
+  - Same as 102
+- Space O(n)
+  - Same as 102
+
 #### Q111 Minimum Depth of Binary Tree
+
 - https://leetcode.com/problems/minimum-depth-of-binary-tree/
   - [BFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_BFS.java)
     - Time O(n)
       - We visit each node once
       - We are doing enqueue O(1) and dequeue O(1) for each node = **2nxO(1)=O(n)**
     - Space O(n) if balanced tree
-      - We are storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom_minus_1)=(x+1)/2 x=n-(n+1)/2 (#_of_nodes_in_bottom_minus_1)=(n-(n+1)/2+1)/2** elements if queue is balanced, and we are on lowest-1 level, because on lowest level we already return.
+      - We are storing nodes inside a queue which can contain at most **(#_
+        of_nodes_in_bottom_minus_1)=(x+1)/2 x=n-(n+1)/2 (#_of_nodes_in_bottom_minus_1)=(n-(n+1)/2+1)
+        /2** elements if queue is balanced, and we are on lowest-1 level, because on lowest level we
+        already return.
   - [DFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFS.java)
   - [DFS short](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFSShort.java)
     - Time O(n)
@@ -298,6 +340,53 @@
   - BFS if tree is very deep but not wide because in this case DFS's space complexity is O(n)
     because n=height but BFS's space complexity is O((n+1/2))
   - DFS if tree is very wide but not deep bec
+
+#### 116. Populating Next Right Pointers in Each Node
+
+- Source
+  - https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/1654181/C%2B%2BPythonJava-Simple-Solution-w-Images-and-Explanation-or-BFS-%2B-DFS-%2B-O(1)-Optimized-BFS
+- DFS
+  - Idea
+    - We update each child's next pointer from parent:
+      - Parent's left child next is parent's right child. (parent always has either 2 children or 0
+        children because we have a perfect binary tree)
+      - Parent's right child's next is parent's next's left child (if parent has next it was
+        populated on previous level. If parent doesn't have next, parent's right child is the
+        rightmost node on the level)
+      - If left child doesn't exist we can immediately return the node because we have reached the
+        last level because it is a perfect binary tree
+  - Time O(n)
+    - Because we visit each node once
+  - Space O(height)=O(log2(n+1))=O(logn)
+    - The call stack max depth is height of the tree because we have a perfect binary tree which
+      can't be skewed
+- BFS
+  - Idea
+    - We do right-to-left traversal because for each node we require the right node on the same
+      level.
+    - We assign rightNode to previously traversed node on the level, which is always the node right
+      from the current node.
+    - Initially we assign rightNode to null, because first right-most node on each level has no
+      right node.
+    - After assigning rightNode to previous node which was to the right from current, we add node's
+      children to queue.
+      - Important to add right child before left child because this ensures that we traverse right
+        to left on each level.
+    - If node has no children, it means we are no the last level, because it is a perfect binary
+      tree.
+    - When queue becomes empty, we have completed binary tree traversal and we can return root node
+  - Time O(n)
+    - Because we visit each node once.
+  - Space O(queue width)=O((n+1)/2)=O(n)
+    - Queue width is largest on last level, this is a perfect binary tree
+- BFS Space Optimized
+  - Idea
+    - We first populate the next pointers of child nodes of current level because this way we can
+      traverse the next level without using a queue.
+  - Time O(n)
+    - Because we visit each node once.
+  - Space O(1)
+    - Because we don't use a queue nor a call stack, only constant extra space is being used
 
 ### Graphs
 

@@ -1,23 +1,24 @@
-package treeGraphs.Q102_binaryTreeLevelOrderTraversal;
+package treeGraphs.Q107_binaryTreeLevelOrderTraversal2;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import treeGraphs.util.TreeNode;
 
-public class Q102_binaryTreeLevelOrderTraversal_BFS {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> answer = new ArrayList<>();
+public class Q107_binaryTreeLevelOrderTraversal2_BFS {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        var answer = new LinkedList<List<Integer>>();
         if (root == null) return answer;
         var queue = new ArrayDeque<TreeNode>();
+
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> currentLevelList = new ArrayList<>();
-            int queueSize = queue.size();
-            for (int i = 0; i < queueSize; i++) {
+            int levelNum = queue.size();
+            var subList = new LinkedList<Integer>();
+            for (int i = 0; i < levelNum; i++) {
                 TreeNode currentNode = queue.remove();
-                currentLevelList.add(currentNode.val);
+                subList.add(currentNode.val);
                 if (currentNode.left != null) {
                     queue.offer(currentNode.left);
                 }
@@ -25,7 +26,7 @@ public class Q102_binaryTreeLevelOrderTraversal_BFS {
                     queue.offer(currentNode.right);
                 }
             }
-            answer.add(currentLevelList);
+            answer.addFirst(subList);
         }
         return answer;
     }
