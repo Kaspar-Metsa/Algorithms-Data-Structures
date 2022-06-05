@@ -5,7 +5,7 @@ import java.util.List;
 
 import treeGraphs.util.TreeNode;
 
-public class PreOrderTraversal_DFS {
+public class PreOrderTraversal_Recursive {
 
     List<Integer> preOrderTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();
@@ -19,5 +19,19 @@ public class PreOrderTraversal_DFS {
         answer.add(node.val);
         traversePreOrder(node.left, answer);
         traversePreOrder(node.right, answer);
+    }
+
+    List<Integer> preOrderTraversalReversed(TreeNode root) {
+        List<Integer> answer = new ArrayList<>();
+        if (root == null) return answer;
+        reverseTraversePreOrder(root, answer);
+        return answer;
+    }
+
+    private void reverseTraversePreOrder(TreeNode node, List<Integer> answer) {
+        if (node == null) return;
+        answer.add(node.val);
+        reverseTraversePreOrder(node.right, answer);
+        reverseTraversePreOrder(node.left, answer);
     }
 }

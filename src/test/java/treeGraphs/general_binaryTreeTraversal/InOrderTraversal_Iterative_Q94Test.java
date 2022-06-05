@@ -9,21 +9,26 @@ import treeGraphs.util.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class General_inOrderTraversal_DFSTest {
-    InOrderTraversal_DFS general_inOrderTraversal_dfs;
+class InOrderTraversal_Iterative_Q94Test {
+
+    InOrderTraversal_Iterative_Q94 inOrderTraversal_iterative_q94;
 
     @BeforeEach
     void beforeEach() {
-        general_inOrderTraversal_dfs = new InOrderTraversal_DFS();
+        inOrderTraversal_iterative_q94 = new InOrderTraversal_Iterative_Q94();
     }
 
     /*
-             1
-           /  \
-          2   3
-         / \ / \
-        4  5 6  7
+                1
+            /       \
+           2         3
+         /  \      /   \
+        4   5     6     7
+      / \  / \   / \   /\
+     8  9 10 11 12 13 14 15
+
     */
+
     @Test
     void test1() {
         TreeNode n1 = new TreeNode(1);
@@ -33,6 +38,14 @@ class General_inOrderTraversal_DFSTest {
         TreeNode n5 = new TreeNode(5);
         TreeNode n6 = new TreeNode(6);
         TreeNode n7 = new TreeNode(7);
+        TreeNode n8 = new TreeNode(8);
+        TreeNode n9 = new TreeNode(9);
+        TreeNode n10 = new TreeNode(10);
+        TreeNode n11 = new TreeNode(11);
+        TreeNode n12 = new TreeNode(12);
+        TreeNode n13 = new TreeNode(13);
+        TreeNode n14 = new TreeNode(14);
+        TreeNode n15 = new TreeNode(15);
 
         n1.left = n2;
         n1.right = n3;
@@ -43,8 +56,17 @@ class General_inOrderTraversal_DFSTest {
         n3.left = n6;
         n3.right = n7;
 
-        List<Integer> actualAnswer = general_inOrderTraversal_dfs.inOrderTraversal(n1);
-        List<Integer> expectedAnswer = List.of(4, 2, 5, 1, 6, 3, 7);
+        n4.left = n8;
+        n4.right = n9;
+        n5.left = n10;
+        n5.right = n11;
+        n6.left = n12;
+        n6.right = n13;
+        n7.left = n14;
+        n7.right = n15;
+
+        List<Integer> actualAnswer = inOrderTraversal_iterative_q94.inorderTraversal(n1);
+        List<Integer> expectedAnswer = List.of(8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15);
         assertEquals(expectedAnswer, actualAnswer);
     }
 
@@ -79,8 +101,28 @@ class General_inOrderTraversal_DFSTest {
         n10.right = n14;
         n14.left = n13;
 
-        List<Integer> actualAnswer = general_inOrderTraversal_dfs.inOrderTraversal(n8);
+        List<Integer> actualAnswer = inOrderTraversal_iterative_q94.inorderTraversal(n8);
         List<Integer> expectedAnswer = List.of(1, 3, 4, 6, 7, 8, 10, 13, 14);
+        assertEquals(expectedAnswer, actualAnswer);
+    }
+
+    /*
+                1
+            /       \
+           2         3
+    */
+
+    @Test
+    void test3() {
+        TreeNode n1 = new TreeNode(1);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n3 = new TreeNode(3);
+
+        n1.left = n2;
+        n1.right = n3;
+
+        List<Integer> actualAnswer = inOrderTraversal_iterative_q94.inorderTraversal(n1);
+        List<Integer> expectedAnswer = List.of(2, 1, 3);
         assertEquals(expectedAnswer, actualAnswer);
     }
 }

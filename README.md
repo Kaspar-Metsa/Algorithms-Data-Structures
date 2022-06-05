@@ -1,9 +1,21 @@
+# TODO
+
+- How to reverse iterative preorder and inorder
+- Understand why easy postorder is bad(reversed reverse-preorder)
+- What is the downside of postorder iterative traversal with 2 stacks
+- What is the upside of postorder iterative traversal with 1 stack
+- Morris traversal for pre/in/post
+
 # Leetcode patterns using TDD
 
 ## Two pointer technique
+
 ### 1. Same Direction
+
 ### 2. Opposite Direction
+
 ### 3. Sliding Window
+
 - https://leetcode.com/problems/longest-substring-without-repeating-characters/
   - [Optimal](src/main/java/arraysStrings/slidingWindow/Q3_longestSubstringWithoutRepeatingCharacters/Solution.java)
     - Time O(n) Space O(n)
@@ -19,9 +31,10 @@
 - Example perfect binary tree
   - n=7, h=3
 #### #_of_nodes in perfect binary tree(from height)
-  - **n=2<sup>h</sup>-1**
-    - **IMPORTANT**
-  - n=2<sup>3</sup>-1=7
+
+- **n=2<sup>h</sup>-1**
+  - **IMPORTANT**
+- n=2<sup>3</sup>-1=7
 #### Height of the tree(from n)
 - **h=log<sub>2</sub>(n+1)**
   - **IMPORTANT**
@@ -61,6 +74,31 @@
 
 ### General
 
+/*
+
+               1
+          /        \
+         2          3
+       /  \      /     \
+      4    5     6     7
+     / \  / \   / \    /\
+    8  9 10 11 12 13 14 15
+
+*/
+
+- PreOrder
+  - 1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7, 14, 15
+- PreOrder Reversed
+  - 1, 3, 7, 15, 14, 6, 13, 12, 2, 5, 11, 10, 4, 9, 8
+- InOrder
+  - 8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15
+- InOrder Reversed
+  - 15, 7, 14, 3, 13, 6, 12, 1, 11, 5, 10, 2, 9, 4, 8
+- PostOrder
+  - 8, 9, 4, 10, 11, 5, 2, 12, 13, 6, 14, 15, 7, 3, 1
+- PostOrder Reversed
+  - 15, 14, 7, 13, 12, 6, 3, 11, 10, 5, 9, 8, 4, 2, 1
+
 #### Binary Tree BFS Level Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
@@ -72,28 +110,29 @@
     - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)=(
       n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
 
-#### Binary Tree DFS In Order Traversal
+#### Binary Tree Recursive In-Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversal_DFS.java)
 - Useful for returning nodes in non-decreasing order in Binary Search Tree
 - Variation for reverse: non-increasing order in Binary Search Tree
   - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversalReversed_DFS.java)
 
-#### Binary Tree DFS Pre Order Traversal
+#### Binary Tree Recursive Pre Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PreOrderTraversal_DFS.java)
 - Useful for
   - Copying the tree
   - Getting prefix expression of an expression tree
+  - Left side view of the binary tree
 
-#### Binary Tree DFS Post Order Traversal
+#### Binary Tree Recursive Post Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PostOrderTraversal_DFS.java)
 - Useful for
   - Deleting the tree
   - Getting postfix expression of the expression tree
 
-#### Binary Tree DFS Pre-Order, In-Order, Post-Order Traversal Complexity
+#### Binary Tree Recursive Pre-Order, In-Order, Post-Order Traversal Complexity
 
 - Time O(n)
   - 1st explanation(easy)
@@ -109,9 +148,32 @@
     - Proof using Master's Theorem
       - https://stackoverflow.com/a/56799754
 - Space
-  - O(n) - size of the stack
-    - In skewed tree O(n)=h=n
-    - In balanced tree O(n)=h=log<sub>2</sub>(n+1)
+  - O(h) - size of the stack
+    - In skewed tree h=n
+    - In balanced tree h=log<sub>2</sub>(n+1)
+
+#### Binary Tree Iterative Pre-Order
+
+- Time O(2n)=O(n)
+  - Because we visit each node once
+- Space O(h)=O(n)
+  - If right skewed space is O(1)
+  - If left skewed space is O(n)
+  - If balanced h=log<sub>2</sub>(n+1)
+
+#### Binary Tree Iterative In-Order
+
+- Time O(2n)=O(n)
+  - Because we add each node to stack once and pop it once
+- Space O(h)=O(n)
+  - If right skewed space is O(1)
+  - If left skewed space is O(n)
+  - If balanced h=log<sub>2</sub>(n+1)
+
+#### Binary Tree Iterative Post-Order
+
+- Time
+- Space
 
 ### Binary Search Tree
 
@@ -235,8 +297,7 @@
       - We visit each node once
       - We are doing enqueue O(1) and dequeue O(1) for each node = **2nxO(1)=O(n)**
     - Space 2xO(n) because double list + O(n) for queue if balanced tree = O(n)
-      - We store a list of (list for each level). There can be n such lists if skewed tree. This
-        is **O(n)**
+      - We store a list of (list for each level). There can be n such lists if skewed tree. This is **O(n)**
       - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)
         =(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
 
@@ -340,6 +401,34 @@
   - BFS if tree is very deep but not wide because in this case DFS's space complexity is O(n)
     because n=height but BFS's space complexity is O((n+1/2))
   - DFS if tree is very wide but not deep bec
+
+#### 112. Populating Next Right Pointers in Each Node
+
+- BFS
+  - Idea
+    - First(visitedStack) stack keeps record of visited nodes(in a DFS way)
+    - Second(sumStack) stack keeps record of sum till current node.
+    - Only check against final sum when current node doesn't have any child
+      - Otherwise keep adding current sum with child node's value.
+    - The visited nodes are no longer in the stack, so the stack won't be double checked for the
+      same node.
+  - Time O(n)
+    - We visit every node
+  - Space ??? I think it's O(h) if balanced and O(1) if skewed from experiments(depth 4 has max
+    stack 4) but everyone says O(n)
+
+
+- DFS
+  - Idea
+    - If root is null return false
+    - Subtract node.val from the given sum to get new sum
+    - Now we make two recursive calls for both left and right for the root node
+    - If the root node visited is a leaf node and its value is equal to the new sum then return true
+  - Time O(n)
+    - because we visit every node
+  - Space O(h)
+    - worst case skewed tree O(n)
+    - Best case balanced tree O(logn)
 
 #### 116. Populating Next Right Pointers in Each Node
 
