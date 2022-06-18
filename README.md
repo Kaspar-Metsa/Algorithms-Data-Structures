@@ -1,10 +1,12 @@
 # TODO
 
-- How to reverse iterative preorder and inorder
-- Understand why easy postorder is bad(reversed reverse-preorder)
-- What is the downside of postorder iterative traversal with 2 stacks
-- What is the upside of postorder iterative traversal with 1 stack
 - Morris traversal for pre/in/post
+
+# Java
+
+## Copying array
+
+### Time
 
 # Leetcode patterns using TDD
 
@@ -99,6 +101,9 @@
 - PostOrder Reversed
   - 15, 14, 7, 13, 12, 6, 3, 11, 10, 5, 9, 8, 4, 2, 1
 
+- Flipped(PreOrder Reversed) = PostOrder
+- Flipped(PostOrder Reversed) = PreOrder
+
 #### Binary Tree BFS Level Order Traversal
 
 - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
@@ -172,8 +177,8 @@
 
 #### Binary Tree Iterative Post-Order
 
-- Time
-- Space
+- Time O(n)
+- Space O(h)
 
 ### Binary Search Tree
 
