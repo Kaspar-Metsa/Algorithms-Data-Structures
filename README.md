@@ -1,3 +1,70 @@
+#Template
+
+1. We **WRITE down the problem and examples(2-3 sentences)** (1min)
+  - Helps us to internalize the problem
+  - To confirm our understanding with interviewer- easy to mishear.
+  - Avoids the potential disaster of finishing climbing a ladder that was attached to the wrong
+    wall.
+2. We clarify problem space (**50% applicants fail this**) (5min)
+  - Interviewer will **intentionally** not state the **complete** problem at start. We have to find
+    incomplete parts and clarify those parts.
+    - Purpose is for candidate to
+      - Demonstrate not making assumptions(most common mistake and hard to eliminate)
+      - Technical intuition to ask good questions
+      - Making good judgements on unclear parts
+  - Examples of incomplete parts
+    - Missing edge cases
+    - Scope might be larger than it sounds
+    - Initial problem statement is a bait to a trap
+  - Examples of good questions
+    - **Input**
+      - Is the input a negative/fractional/null/etc?
+    - **Output**
+      - Does output have dashes/"and" between numbers?
+      - Do we return exceptions when the input is null?
+    - **Complexity**
+      - Do we prefer speed or optimize for space?
+  - Good judgement examples
+    - Before making a judgement we decide on best options after comparing all options and voicing
+      reasons considering -
+      - Maintainability
+      - Scalability
+      - Readability
+      - Ease to debug
+3. We write down test cases (most candidates fail because they only test in the end) (5min)
+  - Benefit is further clarification
+  - Example common cases
+    - 1...9 → one...nine
+    - 10...19 → ten...nineteen
+    - 20, 30,...90 → twenty, thirty,...ninety
+    - 21 → twenty one
+    - 100 → one hundred
+    - 101...109 → one hundred one...one hundred nine
+    - 110...119 → one hundred ten...one hundred nineteen 8. 120 → one hundred twenty
+    - 123 → one hundred twenty three
+    - 200 → two hundred
+    - 999 → nine hundred ninety nine
+  - Example edge cases
+    - -1 → throws an exception
+    - 0 → throws an exception
+    - 1000 → throws an exception
+4. We write down and explain **Clear Idea(step by step)** before solving the algorithm, then iterate
+   if we see possible improvements
+  - Because this will result in **precise and readable** code
+  - If we don't have a clear longestSubstring before coding, we either don't finish in time or our
+    longestSubstring is not clear.
+  - We write down the **Complexity** because the complexity of longestSubstring is built upon
+    correct choice of data structures.
+5. For practice: we write down and explain the pattern that we are basing our longestSubstring on
+  - Examples
+    - Pre/In/Post order DFS recursive/iterative traversal (or reverse)
+    - Level order BFS recursive/iterative traversal (or reverse)
+6. We code the **step-by-step pseudocode to code** - 5 min
+7. We test using test cases - 5 min
+  - We check every branch. Branch is where result can be different depending on the input (if,
+    while, switch, for).
+  - If statement requires 2-3 test cases
+
 # TODO
 
 - Morris traversal for pre/in/post
@@ -9,6 +76,10 @@
 ### Time
 
 # Leetcode patterns using TDD
+
+## Sum formula
+
+1+2+3+...+n=n(n+1)/2
 
 ## Two pointer technique
 
@@ -106,7 +177,7 @@
 
 #### Binary Tree BFS Level Order Traversal
 
-- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
+- [Solution](src/main/java/trees/general_binaryTreeTraversal/LevelOrderTraversal_BFS.java)
   - Time O(n)
     - We visit each node once
     - We are doing enqueue O(1) and dequeue O(1) for each node = n*2*O(1)=O(n)
@@ -117,14 +188,14 @@
 
 #### Binary Tree Recursive In-Order Traversal
 
-- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversal_DFS.java)
+- [Solution](src/main/java/trees/general_binaryTreeTraversal/InOrderTraversal_DFS.java)
 - Useful for returning nodes in non-decreasing order in Binary Search Tree
 - Variation for reverse: non-increasing order in Binary Search Tree
-  - [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/InOrderTraversalReversed_DFS.java)
+  - [Solution](src/main/java/trees/general_binaryTreeTraversal/InOrderTraversalReversed_DFS.java)
 
 #### Binary Tree Recursive Pre Order Traversal
 
-- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PreOrderTraversal_DFS.java)
+- [Solution](src/main/java/trees/general_binaryTreeTraversal/PreOrderTraversal_DFS.java)
 - Useful for
   - Copying the tree
   - Getting prefix expression of an expression tree
@@ -132,7 +203,7 @@
 
 #### Binary Tree Recursive Post Order Traversal
 
-- [Solution](src/main/java/treeGraphs/general_binaryTreeTraversal/PostOrderTraversal_DFS.java)
+- [Solution](src/main/java/trees/general_binaryTreeTraversal/PostOrderTraversal_DFS.java)
 - Useful for
   - Deleting the tree
   - Getting postfix expression of the expression tree
@@ -198,14 +269,14 @@
 #### 235. Lowest Common Ancestor for Binary Search Tree (Easy)
 
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-- [DFS](src/main/java/treeGraphs/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_DFS.java)
+- [DFS](src/main/java/trees/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_DFS.java)
   - Time O(n)=O(height)
     - In skewed tree height=n
     - In balanced tree h=log<sub>2</sub>(n+1)
   - Space O(n)=O(height)
     - In skewed tree height=n
     - In balanced tree h=log<sub>2</sub>(n+1)
-- [BFS](src/main/java/treeGraphs/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_BFS.java)
+- [BFS](src/main/java/trees/binary_search_tree/Q235_lowestCommonAncestor_bst/Q235_lowestCommonAncestor_BFS.java)
   - Time O(n)=O(height)
     - In skewed tree height=n
     - In balanced tree h=log<sub>2</sub>(n+1)
@@ -297,12 +368,13 @@
 #### Q102 Level Order Binary Tree BFS Traversal
 
 - https://leetcode.com/problems/binary-tree-level-order-traversal/
-  - [Solution](src/main/java/treeGraphs/Q102_binaryTreeLevelOrderTraversal/Q102_binaryTreeLevelOrderTraversal_BFS.java)
+  - [Solution](src/main/java/trees/Q102_binaryTreeLevelOrderTraversal/Q102_binaryTreeLevelOrderTraversal_BFS.java)
     - Time O(n)
       - We visit each node once
       - We are doing enqueue O(1) and dequeue O(1) for each node = **2nxO(1)=O(n)**
     - Space 2xO(n) because double list + O(n) for queue if balanced tree = O(n)
-      - We store a list of (list for each level). There can be n such lists if skewed tree. This is **O(n)**
+      - We store a list of (list for each level). There can be n such lists if skewed tree. This
+        is **O(n)**
       - We are also storing nodes inside a queue which can contain at most **(#_of_nodes_in_bottom)
         =(n+1)/2** elements if queue is balanced, and we are on lowest level. This is **O(n)**
 
@@ -335,7 +407,7 @@
 #### Q111 Minimum Depth of Binary Tree
 
 - https://leetcode.com/problems/minimum-depth-of-binary-tree/
-  - [BFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_BFS.java)
+  - [BFS](src/main/java/trees/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_BFS.java)
     - Time O(n)
       - We visit each node once
       - We are doing enqueue O(1) and dequeue O(1) for each node = **2nxO(1)=O(n)**
@@ -344,37 +416,44 @@
         of_nodes_in_bottom_minus_1)=(x+1)/2 x=n-(n+1)/2 (#_of_nodes_in_bottom_minus_1)=(n-(n+1)/2+1)
         /2** elements if queue is balanced, and we are on lowest-1 level, because on lowest level we
         already return.
-  - [DFS](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFS.java)
-  - [DFS short](src/main/java/treeGraphs/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFSShort.java)
+  - [DFS](src/main/java/trees/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFS.java)
+  - [DFS short](src/main/java/trees/Q111_minDepthOfBinaryTree/Q111_minDepthOfBinaryTree_DFSShort.java)
     - Time O(n)
       - We visit each node once
-      - There could be an optimization where once we find the minimum in left subtree then we don't need to look past it in right subtree, doesn't affect time complexity, only useful if we know that left subtree is likely to contain answer.
+      - There could be an optimization where once we find the minimum in left subtree then we don't
+        need to look past it in right subtree, doesn't affect time complexity, only useful if we
+        know that left subtree is likely to contain answer.
         - **How???**
     - Space O(n)
       - Worst case if skewed, then call stack is n levels deep
       - Best case is completely balanced tree, then call stack is O(h)=O(log(n+1)) deep
 #### 104. Maximum Depth of Binary Tree
+
 - https://leetcode.com/problems/maximum-depth-of-binary-tree/
-- [DFS recursive](src/main/java/treeGraphs/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_DFSRecursive.java)
+- [DFS recursive](src/main/java/trees/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_DFSRecursive.java)
   - Time O(n)
     - We visit each node once
   - Space O(n)
     - If skewed tree, the size of our recursion stacks is **O(n)**
-    - In a perfectly balanced tree stack size(and thus the space) would be the height of the tree **O(h)=O(log(n+1))**
-- [DFS iterative](src/main/java/treeGraphs/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_DFSIterative.java)
+    - In a perfectly balanced tree stack size(and thus the space) would be the height of the tree **
+      O(h)=O(log(n+1))**
+- [DFS iterative](src/main/java/trees/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_DFSIterative.java)
   - Time O(n)
     - We visit each node once
   - Space O(n)
     - If skewed tree, the size of both stacks is **O(n)**
-    - In a perfectly balanced tree stack size(and thus the space) would be the height of the tree **O(h)=O(log(n+1))**
-- [BFS](src/main/java/treeGraphs/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_BFS.java)
+    - In a perfectly balanced tree stack size(and thus the space) would be the height of the tree **
+      O(h)=O(log(n+1))**
+- [BFS](src/main/java/trees/Q104_maxDepthOfBinaryTree/Q104_maxDepthOfBinaryTree_BFS.java)
   - Time O(n)
     - We visit each node once
   - Space O(n)
-    - Queue of the lowest level can reach O(n) because lowest level can contain **(#_of_nodes_in_bottom)=(n+1)/2**
+    - Queue of the lowest level can reach O(n) because lowest level can contain **(#_
+      of_nodes_in_bottom)=(n+1)/2**
 #### 103. Binary Tree Zigzag Level Order Traversal
+
 - https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
-- [BFS](src/main/java/treeGraphs/Q103_binaryTreeZigzagLevelOrderTraversal/Q103_binaryTreeZigzagLevelOrderTraversal_BFS.java)
+- [BFS](src/main/java/trees/Q103_binaryTreeZigzagLevelOrderTraversal/Q103_binaryTreeZigzagLevelOrderTraversal_BFS.java)
   - Time O(n)
     - We visit each node once
   - Space O(n)
@@ -383,7 +462,7 @@
     - Level list can contain at most **(n+1)/2** elements if balanced tree
     - queue can contain at most **(n+1)/2** elements if balanced tree
     - Total if balanced tree: **O(n)+2xO((n+1)/2) = O(n)**
-- [DFS](src/main/java/treeGraphs/Q103_binaryTreeZigzagLevelOrderTraversal/Q103_binaryTreeZigzagLevelOrderTraversal_DFS.java)
+- [DFS](src/main/java/trees/Q103_binaryTreeZigzagLevelOrderTraversal/Q103_binaryTreeZigzagLevelOrderTraversal_DFS.java)
   - Time O(n)
     - We visit each node once
   - Space O(n)
@@ -394,11 +473,11 @@
 #### 199. Right side view
 
 - https://leetcode.com/problems/binary-tree-right-side-view/
-- [BFS](src/main/java/treeGraphs/Q199_rightSideView/Q199_rightSideView_BFS.java)
+- [BFS](src/main/java/trees/Q199_rightSideView/Q199_rightSideView_BFS.java)
   - Time O(n)
     - Because we visit every node
   - Space O(n)=O(L) where L is the maximum number of nodes in a level=(n+1)/2
-- [DFS](src/main/java/treeGraphs/Q199_rightSideView/Q199_rightSideView_DFS.java)
+- [DFS](src/main/java/trees/Q199_rightSideView/Q199_rightSideView_DFS.java)
   - Time O(n)
     - Because we visit every node
   - Space O(n)= O(height of the tree) for storing the call stack, in worst case with skewed tree h=n
@@ -494,19 +573,23 @@
     - By modifying the input grid
 
 
-- [DFS](src/main/java/treeGraphs/Q200_numberOfIslands/Q200_numberOfIslands_DFS.java)
+- [DFS](src/main/java/trees/Q200_numberOfIslands/Q200_numberOfIslands_DFS.java)
   - Time
     - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where
       n=elements in grid
-      - Because in worst case where all elements are 1, then we do one large DFS into all directions and turn all 1-s into 0-s, but then we still iterate through all elements again.
+      - Because in worst case where all elements are 1, then we do one large DFS into all directions
+        and turn all 1-s into 0-s, but then we still iterate through all elements again.
   - Space
     - O(MxN) where M is rows(outside array) and N is columns(inside array)
       - Because in worst case where all elements are 1, our recursion stack is going to MxN deep
 
-- [BFS](src/main/java/treeGraphs/Q200_numberOfIslands/Q200_numberOfIslands_BFS.java)
+- [BFS](src/main/java/trees/Q200_numberOfIslands/Q200_numberOfIslands_BFS.java)
   - Time
-    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where n=elements in grid
-      - Because in worst case where all elements are 1, then we do one large DFS into all directions and turn all 1-s into 0-s, but then we still iterate through all elements again.
+    - O(MxNx2)=O(MxN) where M is rows(outside array) and N is columns(inside array) = O(n) where
+      n=elements in grid
+      - Because in worst case where all elements are 1, then we do one large DFS into all directions
+        and turn all 1-s into 0-s, but then we still iterate through all elements again.
   - Space
     - O(min(MxN)) where M is rows(outside array) and N is columns(inside array).
-      - Because even in worst where all elements are 1, we will not be adding all these elements to our queue at the same time 
+      - Because even in worst where all elements are 1, we will not be adding all these elements to
+        our queue at the same time 
