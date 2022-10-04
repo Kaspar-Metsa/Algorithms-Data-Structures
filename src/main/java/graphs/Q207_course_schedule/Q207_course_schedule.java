@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Q207_course_scheduleV2 {
+public class Q207_course_schedule {
     /*
         Test case#1
             input numCourses = 2, prerequisites = [[1,0]]
@@ -26,7 +26,10 @@ public class Q207_course_scheduleV2 {
         }
         Map<Integer, List<Integer>> adjList = new HashMap<>();
 
-
+        for (int i = 0; i < numCourses; i++) {
+            List<Integer> adjacencies = new LinkedList<>();
+            adjList.put(i, adjacencies);
+        }
         for (int[] prerequisite : prerequisites) {
             if (adjList.containsKey(prerequisite[1])) {
                 adjList.get(prerequisite[1]).add(prerequisite[0]);

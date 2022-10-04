@@ -42,7 +42,6 @@ public class Solution {
             if (visited.get(i).equals("NOT_VISITED")) {
                 visit(i, adjList, visited, hasCycle, result);
             }
-
         }
         if (hasCycle[0]) {
             return new int[]{};

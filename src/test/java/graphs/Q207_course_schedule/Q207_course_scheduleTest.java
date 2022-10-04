@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Q207_course_scheduleV2Test {
+class Q207_course_scheduleTest {
 
     @Test
     void noCycle() {
-        Q207_course_scheduleV1 solution = new Q207_course_scheduleV1();
+        Q207_course_schedule solution = new Q207_course_schedule();
         int numCoursesInput = 3;
         int[][] prereqInput = new int[][]{
                 {1, 0}, {0, 2}, {1, 2}
@@ -20,7 +20,7 @@ class Q207_course_scheduleV2Test {
 
     @Test
     void cycle() {
-        Q207_course_scheduleV1 solution = new Q207_course_scheduleV1();
+        Q207_course_schedule solution = new Q207_course_schedule();
         int numCoursesInput = 3;
         int[][] prereqInput = new int[][]{
                 {1, 0}, {0, 2}, {2, 1}
@@ -31,7 +31,7 @@ class Q207_course_scheduleV2Test {
 
     @Test
     void cycleWithLeafGoingInAndLeafGoingOut() {
-        Q207_course_scheduleV1 solution = new Q207_course_scheduleV1();
+        Q207_course_schedule solution = new Q207_course_schedule();
         int numCoursesInput = 5;
         int[][] prereqInput = new int[][]{
                 {1, 0}, {0, 2}, {2, 1}, {1, 4}, {3, 2}
@@ -42,7 +42,7 @@ class Q207_course_scheduleV2Test {
 
     @Test
     void twoCourses() {
-        Q207_course_scheduleV1 solution = new Q207_course_scheduleV1();
+        Q207_course_schedule solution = new Q207_course_schedule();
         int numCoursesInput = 2;
         int[][] prereqInput = new int[][]{
                 {1, 0}
