@@ -1,4 +1,4 @@
-#Template
+# Template
 
 1. We **WRITE down the problem and examples(2-3 sentences)** (1min)
   - Helps us to internalize the problem
