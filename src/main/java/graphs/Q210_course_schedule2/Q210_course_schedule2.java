@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Solution {
+public class Q210_course_schedule2 {
     /*
         Test case#1
             input numCourses = 2, prerequisites = [[1,0]]

@@ -2,14 +2,10 @@ package twoPointers.slidingWindow.Codeforces_1690_Black_White_Stripes;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Codeforces_1690_Black_White_Stripes {
     /*
@@ -43,37 +39,54 @@ public class Codeforces_1690_Black_White_Stripes {
     }
 
     public static void main(String[] args) throws IOException, FileNotFoundException {
-//        final var cin = new BufferedReader(new InputStreamReader(System.in));
-//        final var cout = new BufferedOutputStream(System.out);
-        final var cin = new BufferedReader(new InputStreamReader(new FileInputStream("")));
-        final var cout = new BufferedOutputStream(new FileOutputStream(""));
+        final var cin = new BufferedReader(new InputStreamReader(System.in));
+        final var cout = new BufferedOutputStream(System.out);
+//        final var cin = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/km/Documents/Projects/leetcode/src/main/java/twoPointers/slidingWindow/Codeforces_1690_Black_White_Stripes/input.txt")));
+//        final var cout = new BufferedOutputStream(new FileOutputStream("/Users/km/Documents/Projects/leetcode/src/main/java/twoPointers/slidingWindow/Codeforces_1690_Black_White_Stripes/output.txt"));
 
         final var numberOfTestCasesLine = nextLine(cin);
         final var numberOfTestcases = numberOfTestCasesLine.nextInt();
         for (int i = 0; i < numberOfTestcases; i++) {
             final var lengtOfSequenceLine = nextLine(cin);
             final var lengthOfSequence = lengtOfSequenceLine.nextInt();
+            final var segmentLength = lengtOfSequenceLine.nextInt();
             final var sequenceLine = nextLine(cin);
-
-            List<Integer> input = new ArrayList<>();
-            for (int j = 0; j < lengthOfSequence; j++) {
-                input.add(sequenceLine.nextInt());
-            }
-
             Codeforces_1690_Black_White_Stripes solution = new Codeforces_1690_Black_White_Stripes();
-            int output = solution.blackAndWhiteStripes(input);
+            int output = solution.blackAndWhiteStripes(sequenceLine.nextStr(), segmentLength);
             cout.write(to_bytes(output));
             cout.write(space);
             cout.write(endl);
-
         }
         cout.flush();
     }
 
-    public Integer blackAndWhiteStripes(List<Integer> input) {
-        List<Integer> result = new ArrayList<>();
+    public Integer blackAndWhiteStripes(String input, int windowSize) {
+        int left = 0;
+        int right = windowSize - 1;
 
-        return 1;
+        int currentAnswer = 0;
+        for (int i = 0; i < windowSize; i++) {
+            char c = input.charAt(i);
+            if (c == 'W') {
+                currentAnswer++;
+            }
+        }
+        int minimumAnswer = currentAnswer;
+
+        while (right < input.length() - 1) {
+            char leftChar = input.charAt(left);
+            if (leftChar == 'W') {
+                currentAnswer--;
+            }
+            left++;
+            right++;
+            char rightChar = input.charAt(right);
+            if (rightChar == 'W') {
+                currentAnswer++;
+            }
+            minimumAnswer = Math.min(minimumAnswer, currentAnswer);
+        }
+        return minimumAnswer;
     }
 
     private static final class tokens extends LinkedList<String> {
@@ -85,6 +98,10 @@ public class Codeforces_1690_Black_White_Stripes {
 
         int nextInt() {
             return Integer.parseInt(remove());
+        }
+
+        String nextStr() {
+            return remove();
         }
     }
 }

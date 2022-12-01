@@ -7,11 +7,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class SolutionTest {
+class Q210courseschedule2Test {
 
     @Test
     void cycle() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 3;
         int[][] prerequisites = new int[][]{
                 {1, 0}, {0, 2}, {2, 1}
@@ -22,7 +22,7 @@ class SolutionTest {
 
     @Test
     void cycle2() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 5;
         int[][] prerequisites = new int[][]{
                 {1, 0}, {0, 2}, {2, 1}, {1, 4}, {3, 2}
@@ -33,7 +33,7 @@ class SolutionTest {
 
     @Test
     void noCycle() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 3;
         int[][] prerequisites = new int[][]{
                 {1, 0}, {0, 2}, {1, 2}
@@ -44,7 +44,7 @@ class SolutionTest {
 
     @Test
     void noCycle2() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 4;
         int[][] prerequisites = new int[][]{
                 {2, 1}, {2, 0}, {3, 2}
@@ -55,7 +55,7 @@ class SolutionTest {
 
     @Test
     void noCycle3() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 5;
         int[][] prerequisites = new int[][]{
                 {0, 1}, {3, 0}, {3, 2}, {4, 3}
@@ -66,7 +66,7 @@ class SolutionTest {
 
     @Test
     void noCycle4() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 1;
         int[][] prerequisites = new int[][]{
 
@@ -77,7 +77,7 @@ class SolutionTest {
 
     @Test
     void noCycle5() {
-        Solution solution = new Solution();
+        Q210_course_schedule2 solution = new Q210_course_schedule2();
         int numCourses = 2;
         int[][] prerequisites = new int[][]{};
         int[] result = solution.findOrder(numCourses, prerequisites);
